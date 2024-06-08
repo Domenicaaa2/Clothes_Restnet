@@ -1,0 +1,21 @@
+id,gender,masterCategory,subCategory,articleType,baseColour,season,year,usage,productDisplayName
+1,Women,Apparel,Bottomwear,Jeans,Blue,Winter,2024,Casual,Blue Jeans
+2,Men,Apparel,Topwear,Tshirts,Brown,Summer,2024,Casual,Brown T-shirt
+3,Women,Apparel,Topwear,Sweatshirts,Red,Winter,2024,Sports,Red Sweatshirt
+4,Women,Apparel,Topwear,Tshirts,Grey,Summer,2024,Casual,Grey T-shirt
+5,Men,Apparel,Bottomwear,Shorts,Grey,Summer,2024,Casual,Grey Shorts
+6,Women,Accessories,Belts,Belts,Brown,All Season,2024,Casual,Brown Belt
+7,Women,Accessories,Bags,Handbags,Brown,All Season,2024,Party,Brown Handbag
+8,Women,Accessories,Bags,Handbags,Black,All Season,2024,Party,Black Handbag
+9,Women,Accessories,Jewellery,Pendant,Gold,All Season,2024,Party,Gold Pendant
+10,Women,Accessories,Scarves,Scarves,Brown,Winter,2024,Casual,Brown Scarf
+11,Women,Footwear,Shoes,Casual Shoes,Beige,All Season,2024,Casual,Beige Casual Shoes
+12,Men,Footwear,Flip Flops,Flip Flops,Black,Summer,2024,Casual,Black Flip Flops
+13,Men,Footwear,Shoes,Sports Shoes,White,All Season,2024,Sports,White Sports Shoes
+14,Women,Footwear,Shoes,Heels,Black,Winter,2024,Party,Black Heels
+15,Women,Footwear,Shoes,Flats,Black,All Season,2024,Casual,Black Flats
+16,Women,Personal Care,Lips,Lipstick,Brown,All Season,2024,Personal,Brown Lipstick
+17,Women,Personal Care,Fragrance,Perfume,White,All Season,2024,Personal,White Perfume
+18,Women,Personal Care,Skin Care,Wrist Bands,Pink,All Season,2024,Personal,Pink Wrist Bands
+19,Women,Personal Care,Skin Care,Headband,Pink,All Season,2024,Personal,Pink Headband
+20,Women,Personal Care,Skin Care,Cotton pads,White,All Season,2024,Personal,White Cotton Pads

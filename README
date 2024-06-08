@@ -1,0 +1,180 @@
+the dataset for this Project can be found here: https://drive.google.com/file/d/150HchSY_4pFxWmk_UQE3tUXIEPKqsNfB/view?usp=drive_link
+Please download and unzip it. The folder needs to be called Clothing_Dataset_small.
+ 
+
+Project Goal and Motivation
+The primary goal of this project is to develop a machine learning model for the classification of fashion items to automate the product categorization process on e-commerce platforms.
+
+During my experience in the e-commerce sector, I frequently faced the time-consuming and error-prone task of manually classifying and categorizing a large volume of product images. This process is not only labor-intensive but also prone to errors, leading to inconsistent product listings and a suboptimal customer experience.
+
+By implementing an efficient, automated classification system, this process could be significantly faster and standardized. This, in turn, can lead to improved navigation and a better shopping experience for end-users.
+
+This project explores how machine learning can be applied in real-world e-commerce scenarios, making it relevant as it addresses a common industry challenge and aims to leverage technology to solve it.
+
+Data Collection and Generation
+For this project, data was sourced from multiple channels to ensure the robustness and versatility of the machine learning model.
+
+Publicly Available Dataset: The primary dataset used in this project is from Kaggle, specifically the Fashion Product Images Small dataset. This dataset contains a collection of fashion product images, categorized into various master categories, including apparel, accessories, footwear, personal care items, free items, sporting goods, and home products. This dataset provided a solid foundation for training and validating the machine learning models.
+Custom Dataset: To further enhance the model's robustness and ensure its effectiveness on unseen data, I created an additional small dataset. This dataset includes fashion articles sourced from Zalando, covering all master categories. By incorporating these additional images, I aimed to test the model's performance in real-world scenarios and ensure it can generalize well to new, unseen data.
+The combination of these datasets allows for a comprehensive training and validation process, ensuring the model is well-equipped to handle a variety of fashion items and provide accurate classifications.
+
+Overview of Files
+Files 1.1 to 1.5: Information about the Dataset and Preparing it
+1.1_dataset_content.ipynb
+
+This notebook loads and analyzes two datasets: the custom dataset (custom_clothing_metadata.csv) and the original dataset (cleaned_metadata.csv). It generates summary statistics and visualizations for the distribution of master categories, subcategories, and article types.
+
+1.2_custom_dataset.py
+
+This script creates a custom dataset similar to the original CSV file by generating a DataFrame with specified columns and values, and then saving it as a CSV file (custom_clothing_metadata.csv). The custom dataset contains 20 pictures of clothes similar to the training dataset (pictures with white backgrounds).
+
+1.3_cleancsv.py
+
+This script cleans the original metadata file (Clothing_Dataset_small/styles.csv) by ensuring that each line contains the expected number of fields. The cleaned data is saved in a new CSV file (cleaned_metadata.csv).
+
+1.4_picture_to_csv_check.py
+
+This script checks if all images listed in the cleaned metadata CSV (cleaned_metadata.csv) exist in the specified images directory (Clothing_Dataset_small/images).
+
+1.5_count_classes.py
+
+This script counts the unique classes in a specified column of the cleaned metadata CSV (cleaned_metadata.csv). By default, it counts the occurrences of each unique value in the masterCategory column.
+
+Folder Clothing_classifier
+
+Contains the frontend that I made.
+To see the results and be able to check the models on the frontend please change directory to “cd clothing_classifier/app-svelte” and “start npm run dev”. In the “cd clothing_classifier” start “python app.py”.
+The application will run on http://localhost:8080/
+
+Folder Clothing_Dataset_small
+The pictures for the Training are in the Clothing_Dataset_small file. The folder images is the original dataset with the styles.csv.
+The images_custom is the dataset I created myself, the corresponding csv is the custom_clothing_metadata.csv.
+
+Training of the Model
+This project involves training and evaluating different models for classifying fashion images into different master categories. The training started with a basic CNN model, moved to a pretrained VGG16 model, and then to a deep CNN model, culminating in a fourth run with further fine-tuning. Each step included preprocessing the data, training the model, and evaluating its performance. The final model aims to generalize well and perform accurately even on images it has never seen before.
+
+2.1_training_mastercategory.py
+
+This script trains a basic CNN model to classify images into different master categories using the cleaned metadata and image dataset.
+
+Steps:
+
+Load and clean the dataset.
+Split the data into training and test sets.
+Create an ImageDataGenerator for data augmentation.
+Define and compile a basic CNN model.
+Train the model and save it.
+Plot training history (accuracy and loss).
+Evaluate the model and generate a confusion matrix.
+2.2_training_fewer_classes_VGG16.py
+
+This script uses VGG16 with transfer learning to train a model for classifying images into master categories. It includes fine-tuning and class weight adjustments to handle imbalanced classes.
+
+Steps:
+
+Load and clean the dataset.
+Remove classes with fewer than 100 examples.
+Split the data into training and test sets.
+Calculate class weights.
+Create an ImageDataGenerator for data augmentation.
+Define and compile a VGG16-based model with transfer learning.
+Train the model with early stopping.
+Save the trained model.
+Plot training history (accuracy and loss).
+Evaluate the model and generate a confusion matrix.
+2.3_training_deep_cnn.py
+
+This script trains a deeper CNN model with additional layers, dropout, and batch normalization to improve generalization and performance on the classification task.
+
+Steps:
+
+Load and clean the dataset.
+Remove classes with fewer than 100 examples.
+Split the data into training and test sets.
+Calculate class weights.
+Create an ImageDataGenerator for data augmentation.
+Define and compile a deep CNN model with additional layers and dropout.
+Train the model with early stopping.
+Save the trained model.
+Plot training history (accuracy and loss).
+Evaluate the model and generate a confusion matrix.
+2.4_training_custom_dataset.py
+
+This script further refines the model training process using a custom dataset with VGG16 and transfer learning. It includes more aggressive data augmentation and fine-tuning.
+
+Steps:
+
+Load and clean the custom dataset.
+Ensure all files exist and remove missing files.
+Remove classes with fewer than 100 examples.
+Split the data into training and test sets.
+Calculate class weights.
+Create an ImageDataGenerator for data augmentation.
+Define and compile a VGG16-based model with transfer learning and additional dropout.
+Train the model with early stopping.
+Save the trained model.
+Plot training history (accuracy and loss).
+Evaluate the model and generate a confusion matrix.
+Interpretation and Evaluation
+3.1_Evaluation_models.py
+
+This script evaluates the performance of multiple models by predicting the master category of images from a custom dataset and a subset of a cleaned dataset. The predictions are compared against the true labels, and results are saved in an Excel file with the correct predictions highlighted. The test is done on all of the custom dataset and 30 random pictures of the training set.
+
+Steps:
+
+Ensure that all necessary image files exist and clean the metadata.
+Select 30 random images from the cleaned metadata for evaluation.
+Load the VGG16, Deep CNN, and Base CNN models.
+Save the results to an Excel file and apply conditional formatting to highlight correct predictions.
+Confusion Matrix Analysis
+The confusion matrices for the four models provide insight into how well each model performed across different categories:
+
+Base Model:
+
+High accuracy in predicting the 'Apparel' category with 4131 correct predictions.
+Significant confusion between 'Apparel' and 'Accessories,' indicated by 1512 incorrect predictions for 'Accessories.'
+Overall, the model struggles with categories other than 'Apparel.'
+VGG16 Model (Second Run):
+
+Improved accuracy for 'Apparel' with 4116 correct predictions.
+Reduced confusion between 'Apparel' and 'Accessories' with 106 incorrect predictions for 'Accessories.'
+Better performance in other categories, but still some misclassifications.
+Deep CNN Model (Third Run):
+
+Further improvement in predicting 'Apparel' with 4199 correct predictions.
+Reduced confusion in other categories, especially 'Footwear' with 1813 correct predictions.
+Overall, shows a balanced performance across categories with fewer misclassifications.
+VGG16 Custom Dataset (Fourth Run):
+
+High accuracy for 'Apparel' with 4099 correct predictions.
+Reduced confusion in 'Accessories' and 'Footwear,' but some misclassifications in 'Personal Care.'
+Shows a significant improvement in generalization and performance.
+Training and Validation Performance
+The training and validation accuracy and loss graphs provide insights into the training dynamics of each model:
+
+Base Model:
+
+The training accuracy gradually improves, but the validation accuracy shows significant fluctuations, indicating potential overfitting.
+The loss graph shows a similar pattern with the training loss decreasing while validation loss fluctuates.
+VGG16 Model (Second Run):
+
+Improved training and validation accuracy compared to the base model.
+Validation accuracy is more stable, indicating better generalization.
+Loss graphs show a consistent decrease, reflecting effective learning.
+Deep CNN Model (Third Run):
+
+High training accuracy with stable validation accuracy, indicating strong performance.
+The training and validation loss decrease steadily, showing effective training and good generalization.
+VGG16 Custom Dataset (Fourth Run):
+
+High training accuracy with consistent validation accuracy, showing robust performance.
+The loss graphs indicate effective training with both training and validation loss decreasing over epochs.
+Conclusion
+
+In this project, I aimed to create an efficient machine learning model to automate the classification of fashion items.
+This was to address the time-consuming and error-prone task of manually categorizing products in e-commerce platforms.
+Starting with a basic CNN model, I gradually moved to more advanced models like VGG16 and Deep CNN, and used transfer learning to boost performance.
+Adding data augmentation and class weights helped the models perform better, especially with imbalanced categories. By keeping an eye on validation accuracy and loss, and using early stopping, I avoided overfitting.
+The final model, which included additional fine-tuning with a custom dataset, showed high accuracy and could handle new images well.
+
+This project demonstrates how machine learning can solve real-world challenges, making e-commerce operations more efficient and improving the shopping experience.
